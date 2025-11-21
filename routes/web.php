@@ -7,13 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return view('voitures.index');
-});
-
 Route::get('/voiture', [VoitureController::class, 'afficherVoiture']);
 
-Route::get('/voitures', [VoitureController::class, 'index']);
+Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
 
 Route::get('/voiture/{id}', [VoitureController::class, 'show'])->name('voitures.show');
 

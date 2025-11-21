@@ -16,7 +16,7 @@
                 <a href="{{ route('voitures.show', $voiture->id)}}">
                     {{ $voiture->plaque_immatriculation }}
                 </a>
-                <form action="{{ route('voiture.destroy', $voiture->id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('voitures.delete', $voiture->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Supprimer cette voiture ?')">Supprimer</button>

@@ -25,6 +25,6 @@ class VoitureController extends Controller
     public function delete(int $id) {
         $voiture = Voiture::findOrFail($id);
         $voiture->delete();
-        return redirect()->route('voitures.index')->with('success', 'Voiture supprimée avec succès.');
+        return redirect()->route('voiture.index')->with('success', 'Voiture supprimée avec succès.');
     }
 }
