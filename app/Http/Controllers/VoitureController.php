@@ -17,14 +17,33 @@ class VoitureController extends Controller
         return view('voitures.index', compact('voitures'));
     }
 
-    public function show(int $id): View {
+    public function show($id): View {
         $voiture = Voiture::findOrFail($id);
         return view('voitures.show', compact('voiture'));
     }
 
-    public function delete(int $id) {
+    public function delete($id) {
         $voiture = Voiture::findOrFail($id);
         $voiture->delete();
         return redirect()->route('voiture.index')->with('success', 'Voiture supprimée avec succès.');
+    }
+
+    public function edit($id) {
+        $voiture = Voiture::findOrFail($id);
+        return view('voitures.edit', compact('voiture'));
+    }
+
+    public function update(Request $request, $id) {
+        $voiture = Voiture::findOrFail($id);
+        $voiture->update($request->only(['marque', 'modele', 'plaque_immatriculation', 'kilometrage']));
+        return redirect()->route('voitures.show', $voiture->id)->with('success', 'Voiture mise à jour avec succès.');
+    }
+
+    public function create(Request $request) {
+
+    }
+
+    public function store(Request $request) {
+
     }
 }

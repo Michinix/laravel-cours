@@ -21,6 +21,9 @@
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Supprimer cette voiture ?')">Supprimer</button>
                 </form>
+                <a href="{{ route('voitures.update', $voiture->id)}}">
+                    Modifier
+                </a>
             </li>
         @endforeach
     </ul>

@@ -10,7 +10,7 @@
 <h1>{{$voiture->plaque_immatriculation}}</h1>
 <div>
     <h2>{{ $voiture->marque }} - {{ $voiture->modele }}</h2>
-    <p>Couleur: {{ $voiture->kilometrage }}</p>
+    <p>Kilométrage: {{ $voiture->kilometrage }}</p>
 </div>
 
 <a href="{{url('/voitures')}}">Retour à la liste des voitures</a>
