@@ -39,11 +39,19 @@ class VoitureController extends Controller
         return redirect()->route('voitures.show', $voiture->id)->with('success', 'Voiture mise à jour avec succès.');
     }
 
-    public function create(Request $request) {
-
+    public function create() {
+        return view('voitures.create');
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'modele' => 'required',
+            'marque' => 'required',
+            'plaque_immatriculation' => 'required|unique:voitures,plaque_immatriculation',
+            'kilometrage' => 'required|integer'
+        ]);
 
+        Voiture::create($request->only(['marque', 'modele', 'plaque_immatriculation', 'kilometrage']));
+        return redirect()->route('voiture.index')->with('success', 'Voiture ajoutée avec succès.');
     }
 }
