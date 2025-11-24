@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<form action="{{route('voitures.create')}}" method="POST">
+@if($errors->any())
+    <div style="color:red">
+        <ul>
+            @foreach($error->all() as $err)
+                <li>{{ $err }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form action="{{route('voitures.store')}}" method="POST">
     @csrf
-    @method('POST')
     <div>
         <label for="marque">Marque:</label>
         <input type="text" id="marque" name="marque" value="{{ $voiture->marque }}" required>
@@ -20,7 +28,8 @@
     </div>
     <div>
         <label for="plaque_immatriculation">Plaque d'immatriculation:</label>
-        <input type="text" id="plaque_immatriculation" name="plaque_immatriculation" value="{{ $voiture->plaque_immatriculation }}" required>
+        <input type="text" id="plaque_immatriculation" name="plaque_immatriculation"
+               value="{{ $voiture->plaque_immatriculation }}" required>
     </div>
     <div>
         <label for="kilometrage">Kilométrage:</label>

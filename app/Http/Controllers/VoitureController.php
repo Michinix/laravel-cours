@@ -45,10 +45,10 @@ class VoitureController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'modele' => 'required',
-            'marque' => 'required',
-            'plaque_immatriculation' => 'required|unique:voitures,plaque_immatriculation',
-            'kilometrage' => 'required|integer'
+            'modele' => 'required|string',
+            'marque' => 'required|string',
+            'plaque_immatriculation' => 'required|unique:voitures|string',
+            'kilometrage' => 'required|double'
         ]);
 
         Voiture::create($request->only(['marque', 'modele', 'plaque_immatriculation', 'kilometrage']));
