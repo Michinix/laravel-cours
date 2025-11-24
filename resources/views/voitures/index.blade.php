@@ -28,5 +28,6 @@
         @endforeach
     </ul>
 @endif
+<a href="{{ route('voitures.create') }}">Ajouter une nouvelle voiture</a>
 </body>
 </html>

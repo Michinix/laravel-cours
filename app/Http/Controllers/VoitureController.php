@@ -8,10 +8,6 @@ use App\Models\Voiture;
 
 class VoitureController extends Controller
 {
-    public function afficherVoiture(): View {
-        return view('voitures.afficherVoiture');
-    }
-
     public function index(): View {
         $voitures = Voiture::all();
         return view('voitures.index', compact('voitures'));
@@ -25,7 +21,7 @@ class VoitureController extends Controller
     public function delete($id) {
         $voiture = Voiture::findOrFail($id);
         $voiture->delete();
-        return redirect()->route('voiture.index')->with('success', 'Voiture supprimée avec succès.');
+        return redirect()->route('voitures.index')->with('success', 'Voiture supprimée avec succès.');
     }
 
     public function edit($id) {
@@ -48,10 +44,10 @@ class VoitureController extends Controller
             'modele' => 'required|string',
             'marque' => 'required|string',
             'plaque_immatriculation' => 'required|unique:voitures|string',
-            'kilometrage' => 'required|double'
+            'kilometrage' => 'required|numeric',
         ]);
 
         Voiture::create($request->only(['marque', 'modele', 'plaque_immatriculation', 'kilometrage']));
-        return redirect()->route('voiture.index')->with('success', 'Voiture ajoutée avec succès.');
+        return redirect()->route('voitures.index')->with('success', 'Voiture ajoutée avec succès.');
     }
 }
